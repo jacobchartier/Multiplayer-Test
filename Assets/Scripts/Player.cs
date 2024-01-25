@@ -25,12 +25,19 @@ public class Player : NetworkBehaviour
     {
         if (!IsOwner) return;
 
-        Move();
+        HandleMovementServerAuth();
     }
 
-    private void Move()
+    private void HandleMovementServerAuth()
     {
-        Vector2 move = InputManager.mouvementInput;
-        rb.velocity = new Vector3(move.x * movementSpeed, rb.velocity.y, move.y * movementSpeed);
+        Vector2 movementInput = InputManager.mouvementInput;
+        HandleMovementServerRPC(movementInput);
+    }
+
+
+    [ServerRpc(RequireOwnership = false)]
+    private void HandleMovementServerRPC(Vector2 input)
+    {
+        rb.velocity = new Vector3(input.x * movementSpeed, rb.velocity.y, input.y * movementSpeed);
     }
 }
