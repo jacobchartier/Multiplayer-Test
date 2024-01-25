@@ -34,7 +34,6 @@ public class Player : NetworkBehaviour
         HandleMovementServerRPC(movementInput);
     }
 
-
     [ServerRpc(RequireOwnership = false)]
     private void HandleMovementServerRPC(Vector2 input)
     {
