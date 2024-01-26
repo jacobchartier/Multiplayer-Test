@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Netcode;
@@ -8,17 +9,20 @@ using UnityEngine;
 public class Player : NetworkBehaviour
 {
     Rigidbody rb;
-    [SerializeField] private float movementSpeed = 5;
+    CinemachineVirtualCamera vCam;
 
-    private void Start()
-    {
-        rb = GetComponent<Rigidbody>();
-    }
+    [SerializeField] private float movementSpeed = 5;
 
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawLine(this.transform.position, new Vector3(this.transform.position.x + 1, this.transform.position.y));
+    }
+
+    private void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+        vCam = GetComponent<CinemachineVirtualCamera>();
     }
 
     private void FixedUpdate()
@@ -38,5 +42,17 @@ public class Player : NetworkBehaviour
     private void HandleMovementServerRPC(Vector2 input)
     {
         rb.velocity = new Vector3(input.x * movementSpeed, rb.velocity.y, input.y * movementSpeed);
+    }
+
+    public override void OnNetworkSpawn()
+    {
+        if (IsOwner)
+        {
+
+        }
+        else
+        {
+
+        }
     }
 }

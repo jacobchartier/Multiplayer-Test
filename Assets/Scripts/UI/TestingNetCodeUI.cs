@@ -12,17 +12,18 @@ public class TestingNetCodeUI : MonoBehaviour
     [SerializeField] private Button startClientButton;
     [SerializeField] private TMP_InputField joinCode;
 
-    public static string typeSelected, code;
+    public static string typeSelected, state = "Waiting for host";
 
     private void Awake()
     {
         startHostButton.onClick.AddListener(() =>
         {
+            state = "Loading";
+
             Debug.Log("Starting game as HOST.");
-            GameManager.CreateRelay();
+            RelayManager.CreateRelay();
 
             typeSelected = "HOST";
-            code = GameManager.joinCode;
 
             Hide();
         });
@@ -30,7 +31,7 @@ public class TestingNetCodeUI : MonoBehaviour
         startClientButton.onClick.AddListener(() =>
         {
             Debug.Log("Starting game as CLIENT.");
-            GameManager.JoinRelay(joinCode.text);
+            RelayManager.JoinRelay(joinCode.text);
 
             typeSelected = "CLIENT";
 

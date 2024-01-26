@@ -9,7 +9,7 @@ using Unity.Netcode;
 using Unity.Netcode.Transports.UTP;
 using Unity.Networking.Transport.Relay;
 
-public class GameManager : MonoBehaviour
+public class RelayManager : MonoBehaviour
 {
     [SerializeField] private static int maxPlayer = 4;
 

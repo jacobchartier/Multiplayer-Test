@@ -15,7 +15,7 @@ public class ClientTypeUI : MonoBehaviour
     private void Update()
     {
         clientTypeText.SetText(TestingNetCodeUI.typeSelected);
-        codeText.SetText(GameManager.joinCode);
+        codeText.SetText(string.IsNullOrEmpty(RelayManager.joinCode) ? TestingNetCodeUI.state : $"{RelayManager.joinCode}");
 
         if (clientTypeText.text == "CLIENT")
         {
