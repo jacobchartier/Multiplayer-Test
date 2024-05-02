@@ -13,7 +13,7 @@ public class RelayManager : MonoBehaviour
 {
     [SerializeField] private static int maxPlayer = 4;
 
-    public static string joinCode;
+    public static string joinCode { get; private set; }
 
     private void Awake()
     {

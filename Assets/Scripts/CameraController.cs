@@ -1,10 +1,10 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using Unity.Netcode;
-using Cinemachine;
+using UnityEngine;
 
-public class CameraManager : NetworkBehaviour
+public class CameraController : NetworkBehaviour
 {
     [SerializeField] private CinemachineVirtualCamera vCam1stPerson;
     [SerializeField] private CinemachineVirtualCamera vCam3rdPerson;
