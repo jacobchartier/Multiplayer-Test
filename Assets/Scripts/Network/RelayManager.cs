@@ -14,6 +14,8 @@ public class RelayManager : MonoBehaviour
     [SerializeField] private static int maxPlayer = 4;
 
     public static string joinCode { get; private set; }
+    public static string playerName { get; private set; }
+    public static string playerID { get; private set; }
 
     private void Awake()
     {
@@ -26,6 +28,8 @@ public class RelayManager : MonoBehaviour
 
         AuthenticationService.Instance.SignedIn += () =>
         {
+            playerName = string.IsNullOrEmpty(AuthenticationService.Instance.PlayerName) ? "Unknow" : $"{AuthenticationService.Instance.PlayerName}";
+            playerID = AuthenticationService.Instance.PlayerId;
             Debug.Log($"Logged in as: <color=#FFFFFF><b>{(string.IsNullOrEmpty(AuthenticationService.Instance.PlayerName) ? "Unknow" : $"{AuthenticationService.Instance.PlayerName}")}</b> (<b>{AuthenticationService.Instance.PlayerId}</b>)</color>");
         };
 

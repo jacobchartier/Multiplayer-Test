@@ -1,6 +1,7 @@
 using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.Netcode;
 using UnityEngine;
 
@@ -11,7 +12,11 @@ public class Player : NetworkBehaviour
     Rigidbody rb;
     CinemachineVirtualCamera vCam;
 
+    [SerializeField] private TMP_Text nameTag;
+    [SerializeField] private TMP_Text idTag;
+
     [SerializeField] private float movementSpeed = 5;
+
 
     #region Debugging stuff (Gizmos)
     private void OnDrawGizmosSelected()
@@ -26,6 +31,9 @@ public class Player : NetworkBehaviour
     {
         rb = GetComponent<Rigidbody>();
         vCam = GetComponent<CinemachineVirtualCamera>();
+
+        nameTag.SetText(RelayManager.playerName);
+        idTag.SetText(RelayManager.playerID);
     }
 
     private void FixedUpdate()
